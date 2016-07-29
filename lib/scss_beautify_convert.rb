@@ -6,7 +6,7 @@ class SCSSBeautifyConvert < Sass::Tree::Visitors::Convert
       super(node)
     end
   end
-
+  # ElsePlacement
   def visit_if_no_newline(node)
     name =
       if !@is_else

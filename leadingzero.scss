@@ -1,0 +1,17 @@
+.test {
+  margin: 0.5em;
+  padding: .25em;
+  padding: 1em 2em 0.5em 2em;
+
+  .test2 {
+    margin: 0.5em;
+    padding: .25em;
+    padding: 1em 2em 0.5em 2em;
+  }
+
+  @include breakpoint($full) {
+    margin: 0.5em;
+    padding: .25em;
+    padding: 1em 2em 0.5em 2em;
+  }
+}

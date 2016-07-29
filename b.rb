@@ -166,10 +166,16 @@ class Sass::Tree::Visitors::DeclarationOrder < Sass::Tree::Visitors::Base
   end
 end
 
-class Sass::Tree::Visitors::ElsePlacement < Sass::Tree::Visitors::Base
-  def visit_if(node)
-    return unless node.else
-    # require 'pry'; binding.pry
+class Sass::Tree::Visitors::LeadingZero < Sass::Tree::Visitors::Base
+  # ExcludeZero Only
+  def visit_prop(node)
+    if Sass::Script::Tree::Literal === node.value && Sass::Script::Value::String === node.value.value
+      node_value = node.value.value
+
+      if node.value.value.to_s.match(/\b0./)
+        node.instance_variable_set(:@value, Sass::Script::Value::String.new(node.value.value.to_s.gsub(/\b0/, '')))
+      end
+    end
   end
 end
 
@@ -195,5 +201,6 @@ tree = engine.to_tree
 # Sass::Tree::Visitors::EmptyRule.visit(tree)
 # Sass::Tree::Visitors::Selector.visit(tree)
 # Sass::Tree::Visitors::DeclarationOrder.visit(tree)
-Sass::Tree::Visitors::ElsePlacement.visit(tree)
+# Sass::Tree::Visitors::ElsePlacement.visit(tree)
+Sass::Tree::Visitors::LeadingZero.visit(tree)
 puts SCSSBeautifyConvert.visit(tree, {}, :scss)
