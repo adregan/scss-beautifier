@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-$:.unshift "/Users/ivantse/Sites/ivantsepp/sass/lib"
+$:.unshift "/Users/joenatalzia/Sites/tools/sass/lib"
 require 'sass'
 contents = File.read(ARGV.first)
 engine = Sass::Engine.new(contents, cache: false, syntax: :scss )
@@ -141,6 +141,29 @@ class Sass::Tree::Visitors::Selector < Sass::Tree::Visitors::Base
   end
 end
 
+class Sass::Tree::Visitors::DeclarationOrder < Sass::Tree::Visitors::Base
+  NODE_ORDER = ["ExtendNode", "MixinNode", "PropNode", "RuleNode"]
+
+  def visit_rule(node)
+    order_children(node)
+    visit_children(node)
+  end
+
+  def order_children(node)
+    node_hash = Hash.new { |h, k| h[k] = [] }
+    node.children.each do |child|
+      hash_key = child.class.to_s.split("::").last
+      node_hash[hash_key] << child
+    end
+
+    compiled_array = NODE_ORDER.reduce([]) do |memo, key|
+      memo.concat(node_hash[key])
+    end
+
+    node.children = compiled_array
+  end
+end
+
 # auto does
 # SingleLinePerProperty
 # SpaceAfterComma
@@ -154,13 +177,13 @@ end
 # TrailingWhitespace ?
 
 tree = engine.to_tree
-require 'pry'; binding.pry
 # Sass::Tree::Visitors::PropertyOrder.visit(tree)
-Sass::Tree::Visitors::BangFormat.visit(tree)
-Sass::Tree::Visitors::BorderZero.visit(tree)
-Sass::Tree::Visitors::Comment.visit(tree)
-Sass::Tree::Visitors::Color.visit(tree)
-Sass::Tree::Visitors::Debug.visit(tree)
-Sass::Tree::Visitors::EmptyRule.visit(tree)
-Sass::Tree::Visitors::Selector.visit(tree)
+# Sass::Tree::Visitors::BangFormat.visit(tree)
+# Sass::Tree::Visitors::BorderZero.visit(tree)
+# Sass::Tree::Visitors::Comment.visit(tree)
+# Sass::Tree::Visitors::Color.visit(tree)
+# Sass::Tree::Visitors::Debug.visit(tree)
+# Sass::Tree::Visitors::EmptyRule.visit(tree)
+# Sass::Tree::Visitors::Selector.visit(tree)
+Sass::Tree::Visitors::DeclarationOrder.visit(tree)
 puts tree.to_scss

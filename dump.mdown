@@ -7,9 +7,9 @@ ColorKeyword
 HexLength
 HexNotation
 SingleLinePerSelector
-
-
 DeclarationOrder
+
+
 ElsePlacement
 LeadingZero
 NameFormat ?
