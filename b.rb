@@ -2,6 +2,7 @@
 
 $:.unshift "/Users/joenatalzia/Sites/tools/sass/lib"
 require 'sass'
+require_relative './lib/scss_beautify_convert'
 contents = File.read(ARGV.first)
 engine = Sass::Engine.new(contents, cache: false, syntax: :scss )
 
@@ -142,6 +143,7 @@ class Sass::Tree::Visitors::Selector < Sass::Tree::Visitors::Base
 end
 
 class Sass::Tree::Visitors::DeclarationOrder < Sass::Tree::Visitors::Base
+  # TODO: Account for if/else blocks and include blocks
   NODE_ORDER = ["ExtendNode", "MixinNode", "PropNode", "RuleNode"]
 
   def visit_rule(node)
@@ -161,6 +163,13 @@ class Sass::Tree::Visitors::DeclarationOrder < Sass::Tree::Visitors::Base
     end
 
     node.children = compiled_array
+  end
+end
+
+class Sass::Tree::Visitors::ElsePlacement < Sass::Tree::Visitors::Base
+  def visit_if(node)
+    return unless node.else
+    # require 'pry'; binding.pry
   end
 end
 
@@ -185,5 +194,6 @@ tree = engine.to_tree
 # Sass::Tree::Visitors::Debug.visit(tree)
 # Sass::Tree::Visitors::EmptyRule.visit(tree)
 # Sass::Tree::Visitors::Selector.visit(tree)
-Sass::Tree::Visitors::DeclarationOrder.visit(tree)
-puts tree.to_scss
+# Sass::Tree::Visitors::DeclarationOrder.visit(tree)
+Sass::Tree::Visitors::ElsePlacement.visit(tree)
+puts SCSSBeautifyConvert.visit(tree, {}, :scss)
