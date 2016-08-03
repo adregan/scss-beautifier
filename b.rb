@@ -225,6 +225,30 @@ class Sass::Tree::Visitors::NameFormat < Sass::Tree::Visitors::Base
   end
 end
 
+class Sass::Tree::Visitors::PropertySortOrder < Sass::Tree::Visitors::Base
+  def visit_rule(node)
+    order_children(node)
+    visit_children(node)
+  end
+
+  def order_children(node)
+    prop_node_indices = []
+    prop_nodes = []
+    node.children.each_with_index do |child, index|
+      hash_key = child.class.to_s.split("::").last
+      if hash_key == 'PropNode'
+        prop_node_indices << index
+        prop_nodes << child
+      end
+    end
+    prop_nodes.sort! { |x,y| x.name[0] <=> y.name[0] }
+    # Replace children being respective of other types of props/funcs/etc
+    prop_nodes.each_with_index do |n, index|
+      node.children[prop_node_indices[index]] = n
+    end
+  end
+end
+
 # auto does
 # SingleLinePerProperty
 # SpaceAfterComma
@@ -249,6 +273,7 @@ tree = engine.to_tree
 # Sass::Tree::Visitors::DeclarationOrder.visit(tree)
 # Sass::Tree::Visitors::ElsePlacement.visit(tree)
 # Sass::Tree::Visitors::LeadingZero.visit(tree)
-Sass::Tree::Visitors::NameFormat.visit(tree)
+# Sass::Tree::Visitors::NameFormat.visit(tree)
+Sass::Tree::Visitors::PropertySortOrder.visit(tree)
 
 puts SCSSBeautifyConvert.visit(tree, {}, :scss)

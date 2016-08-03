@@ -1,0 +1,19 @@
+.rule1 {
+  @extend %placeholder;
+  @extend %placeholder-2;
+
+  color: $black;
+  padding: 10px;
+  display: block;
+  @extend %placeholder2;
+  text-transform: uppercase;;
+  margin: 20px 0;
+
+  .secondary-rule {
+    position: absolute;
+    display: inline-block;
+    padding: 10px 0;
+    @include box-shadow(border-box);
+    color: $black;
+  }
+}

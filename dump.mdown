@@ -11,9 +11,9 @@ DeclarationOrder
 ElsePlacement
 LeadingZero
 NameFormat ?
+PropertySortOrder # TODO - Respect custom ordering rules
 
 
-PropertySortOrder
 PseudoElement
 QualifyingElement
 Shorthand
