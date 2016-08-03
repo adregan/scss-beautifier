@@ -9,10 +9,10 @@ HexNotation
 SingleLinePerSelector
 DeclarationOrder
 ElsePlacement
-
-
 LeadingZero
 NameFormat ?
+
+
 PropertySortOrder
 PseudoElement
 QualifyingElement

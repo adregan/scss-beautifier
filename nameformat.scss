@@ -1,0 +1,30 @@
+@mixin myMixin1() {
+  color: $black;
+}
+
+@mixin my-mixin2() {
+  color: $black;
+}
+
+$someVar1: 'test';
+$some-var2: 'test';
+
+%placeholderOne1 {
+  color: $black;
+}
+
+%placeholder-one2 {
+  color: $black;
+}
+
+@function testFunc1($c) {
+
+}
+
+@function test-func2($c) {
+
+}
+
+@function test_func3($c) {
+
+}
