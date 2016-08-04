@@ -6,6 +6,8 @@ require_relative './lib/scss_beautify_convert'
 contents = File.read(ARGV.first)
 engine = Sass::Engine.new(contents, cache: false, syntax: :scss )
 
+PSEUDO_ELEMENTS = File.read('./data/pseudo_elements.txt').split("\n")
+
 class Sass::Tree::Visitors::PropertyOrder < Sass::Tree::Visitors::Base
   def visit_rule(node)
     grouped_children = node.children.group_by do |n|
@@ -249,6 +251,24 @@ class Sass::Tree::Visitors::PropertySortOrder < Sass::Tree::Visitors::Base
   end
 end
 
+class Sass::Tree::Visitors::PseudoElement < Sass::Tree::Visitors::Base
+  def visit_rule(node)
+    check_pseudo(node) if node.rule.join.match(/::?/)
+    visit_children(node)
+  end
+
+  def check_pseudo(node)
+    node.rule.each do |r|
+      require_double_colon = PSEUDO_ELEMENTS.index(r.split(":").last)
+
+      colon_type = require_double_colon ? '::' : ':'
+      node.rule = Sass::Util.strip_string_array(node.rule.map { |r| r.gsub(/::?/, colon_type) })
+
+      node.send(:try_to_parse_non_interpolated_rules)
+    end
+  end
+end
+
 # auto does
 # SingleLinePerProperty
 # SpaceAfterComma
@@ -274,6 +294,7 @@ tree = engine.to_tree
 # Sass::Tree::Visitors::ElsePlacement.visit(tree)
 # Sass::Tree::Visitors::LeadingZero.visit(tree)
 # Sass::Tree::Visitors::NameFormat.visit(tree)
-Sass::Tree::Visitors::PropertySortOrder.visit(tree)
+# Sass::Tree::Visitors::PropertySortOrder.visit(tree)
+Sass::Tree::Visitors::PseudoElement.visit(tree)
 
 puts SCSSBeautifyConvert.visit(tree, {}, :scss)
