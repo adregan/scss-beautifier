@@ -1,0 +1,23 @@
+div.class {
+  color $green;
+}
+
+.class {
+  color $green;
+}
+
+a#id {
+  color $green;
+}
+
+#id {
+  color $green;
+}
+
+span[data-id="test"] {
+  color $green;
+}
+
+[data-id="test"] {
+  color $green;
+}

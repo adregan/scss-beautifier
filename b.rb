@@ -258,13 +258,29 @@ class Sass::Tree::Visitors::PseudoElement < Sass::Tree::Visitors::Base
   end
 
   def check_pseudo(node)
-    node.rule.each do |r|
+    node.rule = Sass::Util.strip_string_array(node.rule.map { |r|
       require_double_colon = PSEUDO_ELEMENTS.index(r.split(":").last)
 
       colon_type = require_double_colon ? '::' : ':'
-      node.rule = Sass::Util.strip_string_array(node.rule.map { |r| r.gsub(/::?/, colon_type) })
 
-      node.send(:try_to_parse_non_interpolated_rules)
+      r.gsub(/::?/, colon_type)
+    })
+
+    node.send(:try_to_parse_non_interpolated_rules)
+  end
+end
+
+class Sass::Tree::Visitors::QualifyingElement < Sass::Tree::Visitors::Base
+  def visit_rule(node)
+    check_qualifying_element(node)
+    visit_children(node)
+  end
+
+  def check_qualifying_element(node)
+    node.rule.each do |r|
+      puts r
+
+      # node.send(:try_to_parse_non_interpolated_rules)
     end
   end
 end
@@ -296,5 +312,6 @@ tree = engine.to_tree
 # Sass::Tree::Visitors::NameFormat.visit(tree)
 # Sass::Tree::Visitors::PropertySortOrder.visit(tree)
 Sass::Tree::Visitors::PseudoElement.visit(tree)
+# Sass::Tree::Visitors::QualifyingElement.visit(tree)
 
 puts SCSSBeautifyConvert.visit(tree, {}, :scss)
