@@ -278,10 +278,10 @@ class Sass::Tree::Visitors::QualifyingElement < Sass::Tree::Visitors::Base
 
   def check_qualifying_element(node)
     node.rule.each do |r|
-      puts r
-
-      # node.send(:try_to_parse_non_interpolated_rules)
+      # What do we do when something breaks this rule?
     end
+
+    node.send(:try_to_parse_non_interpolated_rules)
   end
 end
 
@@ -311,7 +311,7 @@ tree = engine.to_tree
 # Sass::Tree::Visitors::LeadingZero.visit(tree)
 # Sass::Tree::Visitors::NameFormat.visit(tree)
 # Sass::Tree::Visitors::PropertySortOrder.visit(tree)
-Sass::Tree::Visitors::PseudoElement.visit(tree)
-# Sass::Tree::Visitors::QualifyingElement.visit(tree)
+# Sass::Tree::Visitors::PseudoElement.visit(tree)
+Sass::Tree::Visitors::QualifyingElement.visit(tree)
 
 puts SCSSBeautifyConvert.visit(tree, {}, :scss)
