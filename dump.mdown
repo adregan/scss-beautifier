@@ -14,9 +14,9 @@ NameFormat ?
 PropertySortOrder # TODO - Respect custom ordering rules
 PseudoElement
 QualifyingElement
-
-
 Shorthand
+
+
 SpaceAroundOperator
 StringQuotes
 TrailingZero

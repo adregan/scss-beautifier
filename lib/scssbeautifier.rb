@@ -22,6 +22,7 @@ require_relative './scssbeautifier/formatter/property_sort_order'
 require_relative './scssbeautifier/formatter/pseudo_element'
 require_relative './scssbeautifier/formatter/qualifying_element'
 require_relative './scssbeautifier/formatter/selector'
+require_relative './scssbeautifier/formatter/shorthand'
 
 contents = File.read(ARGV.first)
 engine = Sass::Engine.new(contents, cache: false, syntax: :scss )
@@ -43,5 +44,6 @@ tree = engine.to_tree
 # SCSSBeautifier::Formatter::PropertySortOrder.visit(tree)
 # SCSSBeautifier::Formatter::PseudoElement.visit(tree)
 # SCSSBeautifier::Formatter::QualifyingElement.visit(tree)
+SCSSBeautifier::Formatter::Shorthand.visit(tree)
 
 puts SCSSBeautifyConvert.visit(tree, {}, :scss)
