@@ -24,6 +24,7 @@ require_relative './scssbeautifier/formatter/qualifying_element'
 require_relative './scssbeautifier/formatter/selector'
 require_relative './scssbeautifier/formatter/shorthand'
 require_relative './scssbeautifier/formatter/string_quotes'
+require_relative './scssbeautifier/formatter/trailing_zero'
 
 contents = File.read(ARGV.first)
 engine = Sass::Engine.new(contents, cache: false, syntax: :scss )
@@ -46,6 +47,7 @@ tree = engine.to_tree
 # SCSSBeautifier::Formatter::PseudoElement.visit(tree)
 # SCSSBeautifier::Formatter::QualifyingElement.visit(tree)
 # SCSSBeautifier::Formatter::Shorthand.visit(tree)
-SCSSBeautifier::Formatter::StringQuotes.visit(tree)
+# SCSSBeautifier::Formatter::StringQuotes.visit(tree)
+SCSSBeautifier::Formatter::TrailingZero.visit(tree)
 
 puts SCSSBeautifyConvert.visit(tree, {}, :scss)

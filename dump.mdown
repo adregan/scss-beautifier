@@ -16,9 +16,9 @@ PseudoElement
 QualifyingElement
 Shorthand
 StringQuotes
-
-
 TrailingZero
+
+
 UnnecessaryMantissa
 UnnecessaryParentReference
 UrlFormat
