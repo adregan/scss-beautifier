@@ -45,7 +45,8 @@ class SCSSBeautifier::Convert < Sass::Tree::Visitors::Convert
           ""
         else
           if (child.is_a?(Sass::Tree::MixinNode) && nxt.is_a?(Sass::Tree::MixinNode)) ||
-            (child.is_a?(Sass::Tree::ExtendNode) && nxt.is_a?(Sass::Tree::ExtendNode))
+            (child.is_a?(Sass::Tree::ExtendNode) && nxt.is_a?(Sass::Tree::ExtendNode)) ||
+            (child.is_a?(Sass::Tree::MixinNode) && child.children.any?)
             ""
           else
             "\n"
