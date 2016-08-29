@@ -1,0 +1,49 @@
+formatters:
+
+  border_zero:
+    enabled: true
+
+  comment:
+    enabled: true
+
+  color:
+    enabled: true
+
+  debug:
+    enabled: true
+
+  empty_rule:
+    enabled: true
+
+  selector:
+    enabled: true
+
+  declaration_order:
+    enabled: true
+
+  # else_placement:
+  #   enabled: true
+
+  leading_zero:
+    enabled: true
+
+  name_format:
+    enabled: true
+
+  property_sort_order:
+    enabled: true
+
+  pseudo_element:
+    enabled: true
+
+  qualifying_element:
+    enabled: true
+
+  shorthand:
+    enabled: true
+
+  string_quotes:
+    enabled: true
+
+  trailing_zero:
+    enabled: true

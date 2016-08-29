@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+$:.unshift(File.join(File.dirname(__FILE__), "../lib"))
+require "scss_beautifier"
+
+SCSSBeautifier::CLI.new.run(ARGV)

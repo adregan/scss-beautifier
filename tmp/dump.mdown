@@ -1,0 +1,63 @@
+BangFormat
+BorderZero
+Comment
+DebugStatement
+EmptyRule
+ColorKeyword
+HexLength
+HexNotation
+SingleLinePerSelector
+DeclarationOrder
+ElsePlacement
+LeadingZero
+NameFormat ?
+PropertySortOrder # TODO - Respect custom ordering rules
+PseudoElement
+QualifyingElement
+Shorthand
+StringQuotes
+TrailingZero
+
+
+UnnecessaryMantissa
+UnnecessaryParentReference
+UrlFormat
+UrlQuotes
+ZeroUnit
+ImportPath
+PropertySpelling
+SelectorFormat
+PrivateNamingConvention ?
+SpaceAfterComment
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/attribute-quotes.md
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/brace-style.md - interesting (allow single line?)
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/class-name-format.md
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/empty-args.md
+
+whoa never seen these rules
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/force-attribute-nesting.md
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/force-element-nesting.md
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/force-pseudo-nesting.md
+
+Are these the same as NameFormat ?
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/function-name-format.md
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/id-name-format.md
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/mixin-name-format.md
+
+https://github.com/sasstools/sass-lint/blob/master/docs/rules/no-warn.md
+
+
+EmptyLineBetweenBlocks
+SpaceAroundOperator
+Indentation
+FinalNewline
+SingleLinePerProperty
+SpaceAfterComma
+SpaceAfterPropertyColon
+SpaceAfterPropertyName
+SpaceAfterVariableColon
+SpaceAfterVariableName
+SpaceBeforeBrace
+SpaceBetweenParens
+TrailingSemicolon
+TrailingWhitespace
