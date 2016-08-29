@@ -28,4 +28,30 @@ class SCSSBeautifier::Convert < Sass::Tree::Visitors::Convert
     @is_else = false
   end
 
+  # Visit rule-level nodes and return their conversion with appropriate
+  # whitespace added.
+  def visit_rule_level(nodes)
+    Sass::Util.enum_cons(nodes + [nil], 2).map do |child, nxt|
+      visit(child) +
+        if nxt &&
+            (child.is_a?(Sass::Tree::CommentNode) && child.line + child.lines + 1 == nxt.line) ||
+            (child.is_a?(Sass::Tree::ImportNode) && nxt.is_a?(Sass::Tree::ImportNode) &&
+              child.line + 1 == nxt.line) ||
+            (child.is_a?(Sass::Tree::VariableNode) && nxt.is_a?(Sass::Tree::VariableNode) &&
+              child.line + 1 == nxt.line) ||
+            (child.is_a?(Sass::Tree::PropNode) && nxt.is_a?(Sass::Tree::PropNode)) ||
+            (child.is_a?(Sass::Tree::MixinNode) && nxt.is_a?(Sass::Tree::MixinNode) &&
+              child.line + 1 == nxt.line)
+          ""
+        else
+          if (child.is_a?(Sass::Tree::MixinNode) && nxt.is_a?(Sass::Tree::MixinNode)) ||
+            (child.is_a?(Sass::Tree::ExtendNode) && nxt.is_a?(Sass::Tree::ExtendNode))
+            ""
+          else
+            "\n"
+          end
+        end
+    end.join.rstrip + "\n"
+  end
+
 end
