@@ -6,8 +6,8 @@ require 'scss_beautifier/version'
 Gem::Specification.new do |spec|
   spec.name          = "scss_beautifier"
   spec.version       = SCSSBeautifier::VERSION
-  spec.authors       = ["Ivan Tse"]
-  spec.email         = ["ivan.tse1@gmail.com"]
+  spec.authors       = ["Ivan Tse", "Joe Natalzia"]
+  spec.email         = ["ivan.tse1@gmail.com", "jnatalzia@gmail.com"]
 
   spec.summary       = %q{Beautify your SCSS code}
   spec.description   = %q{Transforms SCSS code to have consistent formatting}
