@@ -35,11 +35,11 @@ class SCSSBeautifier::Formatters::NameFormat < Sass::Tree::Visitors::Base
 
   def check_name(node)
     # return unless node.name
-    node.instance_variable_set(:@name, Sass::Script::Value::String.new(node.name.to_s.gsub(/[[:upper:]]/) { "-#{$&}" }.downcase.gsub(/_/, '-')))
+    node.instance_variable_set(:@name, Sass::Script::Value::String.new(node.name.to_s.gsub(/[[:upper:]]/) { "-#{$&}" }.downcase.gsub(/(?<!_)_(?!_)/, '-')))
   end
 
   def check_rule(node)
-    node.rule = Sass::Util.strip_string_array(node.rule.map { |r| r.to_s.gsub(/[[:upper:]]/) { "-#{$&}" }.downcase.gsub(/_/, '-') })
+    node.rule = Sass::Util.strip_string_array(node.rule.map { |r| r.to_s.gsub(/[[:upper:]]/) { "-#{$&}" }.downcase.gsub(/(?<!_)_(?!_)/, '-') })
     node.send(:try_to_parse_non_interpolated_rules)
   end
 end
