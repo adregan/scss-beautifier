@@ -22,8 +22,7 @@ class SCSSBeautifier::Formatters::Shorthand < Sass::Tree::Visitors::Base
 
   def update_script_list(pName, node)
     nValue = node.value
-
-    # check_shorthand(pName, node, nValue.children.map(&:to_sass), true)
+    check_shorthand(pName, node, nValue.children.map(&:to_sass))
   end
 
   private
