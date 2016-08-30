@@ -1,0 +1,4 @@
+[
+  { "formatter": "SCSSBeautifier::Formatters::BorderZero", "files": ["border_zero"] },
+  { "formatter": "SCSSBeautifier::Formatters::Color", "files": ["color_keyword", "color_short"] }
+]
