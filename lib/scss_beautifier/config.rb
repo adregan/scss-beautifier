@@ -17,5 +17,9 @@ module SCSSBeautifier
         SCSSBeautifier::Formatters.const_get(formatter.split("_").map(&:capitalize).join)
       end
     end
+
+    def tab_style
+      @config["tab_style"] || "  "
+    end
   end
 end

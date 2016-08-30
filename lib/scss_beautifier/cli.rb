@@ -8,11 +8,13 @@ module SCSSBeautifier
       engine = Sass::Engine.new(contents, cache: false, syntax: :scss)
 
       tree = engine.to_tree
-      Config.new(DEFAULT).formatters.each do |formatter|
+      config = Config.new(DEFAULT)
+
+      config.formatters.each do |formatter|
         formatter.visit(tree)
       end
 
-      puts SCSSBeautifier::Convert.visit(tree, {}, :scss)
+      puts SCSSBeautifier::Convert.visit(tree, {indent: config.tab_style}, :scss)
 
     end
 
