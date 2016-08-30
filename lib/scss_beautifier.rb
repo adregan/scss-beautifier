@@ -18,7 +18,6 @@ require "scss_beautifier/config"
 require "scss_beautifier/convert"
 
 # Formatters
-require "scss_beautifier/formatters/bang_format"
 require "scss_beautifier/formatters/border_zero"
 require "scss_beautifier/formatters/color"
 require "scss_beautifier/formatters/comment"
