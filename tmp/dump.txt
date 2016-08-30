@@ -35,6 +35,8 @@ https://github.com/sasstools/sass-lint/blob/master/docs/rules/brace-style.md - i
 https://github.com/sasstools/sass-lint/blob/master/docs/rules/class-name-format.md
 https://github.com/sasstools/sass-lint/blob/master/docs/rules/empty-args.md
 
+Use interpolation over + when you want a string in the end (#{$degree}deg vs $degree + deg)
+
 whoa never seen these rules
 https://github.com/sasstools/sass-lint/blob/master/docs/rules/force-attribute-nesting.md
 https://github.com/sasstools/sass-lint/blob/master/docs/rules/force-element-nesting.md

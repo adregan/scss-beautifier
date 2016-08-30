@@ -11,6 +11,7 @@ require "sass"
 
 require "scss_beautifier/version"
 require "scss_beautifier/cli"
+require "scss_beautifier/options"
 require "scss_beautifier/config"
 
 # Our custom SCSS to SCSS converter

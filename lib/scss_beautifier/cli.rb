@@ -4,11 +4,13 @@ module SCSSBeautifier
     # Takes an array of arguments
     # Returns exit code
     def run(args)
-      contents = File.read(ARGV.first)
+      options = Options.new.parse(args)
+
+      contents = File.read(args.first)
       engine = Sass::Engine.new(contents, cache: false, syntax: :scss)
 
       tree = engine.to_tree
-      config = Config.new(DEFAULT)
+      config = Config.new(options[:config] || DEFAULT)
 
       config.formatters.each do |formatter|
         formatter.visit(tree)
