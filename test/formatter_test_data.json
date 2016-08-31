@@ -1,0 +1,17 @@
+[
+  { "formatter": "SCSSBeautifier::Formatters::BorderZero", "files": ["border_zero"] },
+  { "formatter": "SCSSBeautifier::Formatters::Color", "files": ["color_keyword", "color_short"] },
+  { "formatter": "SCSSBeautifier::Formatters::Comment", "files": ["comments"] },
+  { "formatter": "SCSSBeautifier::Formatters::Debug", "files": ["debug"] },
+  { "formatter": "SCSSBeautifier::Formatters::DeclarationOrder", "files": ["declaration_order"] },
+  { "formatter": "SCSSBeautifier::Formatters::EmptyRule", "files": ["empty"] },
+  { "formatter": "SCSSBeautifier::Formatters::LeadingZero", "files": ["leading_zero"] },
+  { "formatter": "SCSSBeautifier::Formatters::NameFormat", "files": ["name_format"] },
+  { "formatter": "SCSSBeautifier::Formatters::PropertySortOrder", "files": ["property_sort_order"] },
+  { "formatter": "SCSSBeautifier::Formatters::PseudoElement", "files": ["pseudo_element"] },
+  { "formatter": "SCSSBeautifier::Formatters::QualifyingElement", "files": ["qualifying_element"] },
+  { "formatter": "SCSSBeautifier::Formatters::Selector", "files": ["selectors"] },
+  { "formatter": "SCSSBeautifier::Formatters::Shorthand", "files": ["shorthand"] },
+  { "formatter": "SCSSBeautifier::Formatters::StringQuotes", "files": ["string_quotes"] },
+  { "formatter": "SCSSBeautifier::Formatters::TrailingZero", "files": ["trailing_zero"] }
+]
