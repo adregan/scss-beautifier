@@ -19,4 +19,16 @@ class ScssBeautifierTest < Minitest::Test
       end
     end
   end
+
+  def test_converter
+    puts "Testing SCSSBeautifier::Convert"
+
+    old_contents = File.readlines("test/example_scss/else_placement.scss").join
+    expected_contents = File.readlines("test/example_scss/beautified/else_placement.scss").join.strip
+
+    engine = Sass::Engine.new(old_contents, cache: false, syntax: :scss)
+    results = SCSSBeautifier::Convert.visit(engine.to_tree, {}, :scss)
+
+    assert expected_contents == results.strip
+  end
 end
