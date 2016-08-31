@@ -8,6 +8,7 @@ class SCSSBeautifier::Formatters::PseudoElement < Sass::Tree::Visitors::Base
 
   def check_pseudo(node)
     node.rule = Sass::Util.strip_string_array(node.rule.map { |r|
+      return r unless r.is_a?(String)
       require_double_colon = PSEUDO_ELEMENTS.index(r.split(":").last)
 
       colon_type = require_double_colon ? '::' : ':'
