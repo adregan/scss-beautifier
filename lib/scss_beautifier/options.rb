@@ -11,6 +11,7 @@ module SCSSBeautifier
         opts.version = SCSSBeautifier::VERSION
         add_banner(opts)
         add_config_option(opts)
+        add_in_place_option(opts)
       end
     end
 
@@ -33,6 +34,13 @@ module SCSSBeautifier
       message = "the configuration file"
       opts.on("-c", "--config config", message, String) do |config|
         self.options[:config] = config
+      end
+    end
+
+    def add_in_place_option(opts)
+      message = "whether to overwrite the file or not"
+      opts.on("-i", "--in-place", message) do |bool|
+        self.options[:in_place] = bool
       end
     end
 

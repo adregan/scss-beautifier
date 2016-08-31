@@ -16,8 +16,12 @@ module SCSSBeautifier
         formatter.visit(tree)
       end
 
-      puts SCSSBeautifier::Convert.visit(tree, {indent: config.tab_style}, :scss)
-
+      output = SCSSBeautifier::Convert.visit(tree, {indent: config.tab_style}, :scss)
+      if options[:in_place]
+        File.write(args.first, output)
+      else
+        puts output
+      end
     end
 
   end
