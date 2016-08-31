@@ -1,0 +1,31 @@
+.declaration-order {
+  @extend %placeholder;
+
+  @extend %something;
+
+  @include breakpoint($fullscreen);
+  @include box-shadow(10px);
+
+  color: $brown;
+  font-size: 15px;
+
+  .rule {
+    @extend %placeholder;
+
+    @extend %placeholder-2;
+
+    color: $charcoal;
+    transition: transform .5s ease;
+
+    .nested-one-more {
+      @extend %placeholder;
+
+      @include box-shadow(10px);
+
+      @include breakpoint($fullscreen);
+
+      color: $brown;
+      font-size: 15px;
+    }
+  }
+}

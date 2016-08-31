@@ -1,0 +1,12 @@
+.test {
+  color: $black;
+  content: 'hello';
+  content: 'hello';
+  content: "'hello'";
+
+  .nested-child {
+    content: 'hello';
+    content: 'hello';
+    content: "'hello'";
+  }
+}

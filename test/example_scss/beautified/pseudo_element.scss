@@ -1,0 +1,13 @@
+.test {
+  &::before {
+    color: $something;
+  }
+}
+
+.selector::after {
+  color: $somthing;
+
+  &:hover {
+    background-color: $red;
+  }
+}
