@@ -22,3 +22,7 @@ $some-var2: "test";
 @function test-func2($c) {}
 
 @function test-func3($c) {}
+
+.selector-one {
+  color: $black;
+}
