@@ -1,7 +1,7 @@
 [
   { "formatter": "SCSSBeautifier::Formatters::BorderZero", "files": ["border_zero"] },
   { "formatter": "SCSSBeautifier::Formatters::Color", "files": ["color_keyword", "color_short"] },
-  { "formatter": "SCSSBeautifier::Formatters::Comment", "files": ["comments"] },
+  { "formatter": "SCSSBeautifier::Formatters::SilentComment", "files": ["silent_comment"] },
   { "formatter": "SCSSBeautifier::Formatters::Debug", "files": ["debug"] },
   { "formatter": "SCSSBeautifier::Formatters::DeclarationOrder", "files": ["declaration_order"] },
   { "formatter": "SCSSBeautifier::Formatters::EmptyRule", "files": ["empty"] },
