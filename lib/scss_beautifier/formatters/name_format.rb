@@ -1,40 +1,34 @@
 class SCSSBeautifier::Formatters::NameFormat < SCSSBeautifier::Formatters::Base
-  def visit_function(node)
-    check_name(node)
-  end
 
-  def visit_mixin(node)
-    check_name(node)
-  end
+  NODES_WITH_NAME = [
+    :function,
+    :mixin,
+    :placeholder,
+    :mixindef,
+    :script_funcall,
+    :script_variable,
+    :variable
+  ].freeze
 
-  def visit_placeholder(node)
-    check_name(node)
-  end
-
-  def visit_mixindef(node)
-    check_name(node)
-  end
-
-  def visit_script_funcall(node)
-    check_name(node)
-  end
-
-  def visit_script_variable(node)
-    check_name(node)
-  end
-
-  def visit_variable(node)
-    check_name(node)
+  NODES_WITH_NAME.each do |type|
+    define_method "visit_#{type}" do |node|
+      return if disable_for.include?(type.to_s)
+      check_name(node)
+    end
   end
 
   def visit_rule(node)
+    return if disable_for.include?("rule")
     check_rule(node)
   end
 
   private
 
+  def disable_for
+    @disable_for ||= @options["disable_for"] || []
+  end
+
   def check_name(node)
-    # return unless node.name
     node.instance_variable_set(:@name, Sass::Script::Value::String.new(node.name.to_s.gsub(/[[:upper:]]/) { "-#{$&}" }.downcase.gsub(/(?<!_)_(?!_)/, '-')))
   end
 
