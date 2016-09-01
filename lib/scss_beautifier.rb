@@ -33,3 +33,13 @@ require "scss_beautifier/formatters/selector"
 require "scss_beautifier/formatters/shorthand"
 require "scss_beautifier/formatters/string_quotes"
 require "scss_beautifier/formatters/trailing_zero"
+
+class Sass::Tree::Visitors::Base
+  def self.visit(root, options)
+    new(options).send(:visit, root)
+  end
+
+  def initialize(options)
+    @options = options
+  end
+end

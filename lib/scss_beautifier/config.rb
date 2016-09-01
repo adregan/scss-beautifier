@@ -21,5 +21,18 @@ module SCSSBeautifier
     def tab_style
       @config["tab_style"] || "  "
     end
+
+    def options_for(formatter)
+      klass_name = formatter.to_s.split("::").last
+      @config["formatters"][underscore(klass_name)]
+    end
+
+    def underscore(string)
+       string.gsub(/::/, '/').
+       gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+       gsub(/([a-z\d])([A-Z])/,'\1_\2').
+       tr("-", "_").
+       downcase
+     end
   end
 end

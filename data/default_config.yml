@@ -20,7 +20,8 @@ formatters:
     enabled: true
 
   declaration_order:
-    enabled: false
+    enabled: true
+    sort_order: ["mixindef", "mixin", "prop", "rule", "extend"]
 
   # else_placement:
   #   enabled: true
