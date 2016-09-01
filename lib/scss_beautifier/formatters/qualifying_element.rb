@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::QualifyingElement < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::QualifyingElement < SCSSBeautifier::Formatters::Base
   def visit_rule(node)
     check_qualifying_element(node)
     visit_children(node)

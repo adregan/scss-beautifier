@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::StringQuotes < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::StringQuotes < SCSSBeautifier::Formatters::Base
   def visit_prop(node)
     check_quotes(node)
     visit_children(node)

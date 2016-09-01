@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::NameFormat < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::NameFormat < SCSSBeautifier::Formatters::Base
   def visit_function(node)
     check_name(node)
   end

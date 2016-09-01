@@ -12,14 +12,19 @@ module SCSSBeautifier
     end
 
     def formatters
-      enabled_formatters = @config["formatters"].select {|_, formatter| formatter["enabled"] }.keys
-      enabled_formatters.map do |formatter|
-        SCSSBeautifier::Formatters.const_get(formatter.split("_").map(&:capitalize).join)
+      enabled_formatters = []
+      @config["formatters"].each do |formatter, options|
+        if options["enabled"]
+          klass = SCSSBeautifier::Formatters.const_get(formatter.split("_").map(&:capitalize).join)
+          enabled_formatters << klass.new(options)
+        end
       end
+      enabled_formatters
     end
 
     def tab_style
       @config["tab_style"] || "  "
     end
+
   end
 end

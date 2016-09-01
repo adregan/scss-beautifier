@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::Shorthand < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::Shorthand < SCSSBeautifier::Formatters::Base
   def visit_prop(node)
     property_name = node.name.join
     return unless SHORTHANDABLE_PROPERTIES.include?(property_name)

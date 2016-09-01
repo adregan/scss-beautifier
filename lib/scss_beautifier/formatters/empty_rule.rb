@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::EmptyRule < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::EmptyRule < SCSSBeautifier::Formatters::Base
   def visit_root(node)
     remove_empty_rule(node)
     yield

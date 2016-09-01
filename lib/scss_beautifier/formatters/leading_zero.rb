@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::LeadingZero < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::LeadingZero < SCSSBeautifier::Formatters::Base
   # ExcludeZero Only
   def visit_prop(node)
     if Sass::Script::Tree::Literal === node.value && Sass::Script::Value::String === node.value.value

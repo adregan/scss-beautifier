@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::Color < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::Color < SCSSBeautifier::Formatters::Base
   def visit_prop(node)
     if node.value.respond_to?(:each)
       node.value.each{ |item| format_color(item) }

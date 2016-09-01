@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-$:.unshift "/Users/joenatalzia/Sites/tools/sass/lib"
-
 module SCSSBeautifier
   module Formatters
   end
@@ -16,6 +14,9 @@ require "scss_beautifier/config"
 
 # Our custom SCSS to SCSS converter
 require "scss_beautifier/convert"
+
+# Our base formatter
+require "scss_beautifier/formatters/base"
 
 # Formatters
 require "scss_beautifier/formatters/border_zero"

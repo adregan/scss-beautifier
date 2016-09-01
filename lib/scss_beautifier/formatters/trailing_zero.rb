@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::TrailingZero < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::TrailingZero < SCSSBeautifier::Formatters::Base
   def visit_prop(node)
     check_trailing_zero(node)
     visit_children(node)
