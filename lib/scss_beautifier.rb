@@ -20,7 +20,7 @@ require "scss_beautifier/convert"
 # Formatters
 require "scss_beautifier/formatters/border_zero"
 require "scss_beautifier/formatters/color"
-require "scss_beautifier/formatters/comment"
+require "scss_beautifier/formatters/silent_comment"
 require "scss_beautifier/formatters/debug"
 require "scss_beautifier/formatters/declaration_order"
 require "scss_beautifier/formatters/empty_rule"
