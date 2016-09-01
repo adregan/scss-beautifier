@@ -5,19 +5,28 @@ class SCSSBeautifier::Formatters::PropertySortOrder < SCSSBeautifier::Formatters
   end
 
   def order_children(node)
-    prop_node_indices = []
     prop_nodes = []
-    node.children.each_with_index do |child, index|
-      hash_key = child.class.to_s.split("::").last
-      if hash_key == 'PropNode'
-        prop_node_indices << index
-        prop_nodes << child
+    comment_array = []
+    node.children.each do |child|
+      hash_key = child.class.node_name.to_s
+      if hash_key == 'comment'
+        comment_array << child
+      elsif hash_key == 'prop'
+        prop_nodes << comment_array.push(child)
+        comment_array = []
       end
     end
-    prop_nodes.sort! { |x,y| x.name[0] <=> y.name[0] }
+    prop_nodes.sort! { |x,y| x.last.name[0] <=> y.last.name[0] }
     # Replace children being respective of other types of props/funcs/etc
-    prop_nodes.each_with_index do |n, index|
-      node.children[prop_node_indices[index]] = n
+    children = []
+    node.children.each do |child|
+      hash_key = child.class.node_name.to_s
+      if hash_key == 'prop'
+        children.concat(prop_nodes.shift)
+      elsif hash_key != 'comment'
+        children << child
+      end
     end
+    node.children = children
   end
 end
