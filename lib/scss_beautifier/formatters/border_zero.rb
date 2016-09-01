@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::BorderZero < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::BorderZero < SCSSBeautifier::Formatters::Base
   BORDER_PROPERTIES = %w[
     border
     border-top

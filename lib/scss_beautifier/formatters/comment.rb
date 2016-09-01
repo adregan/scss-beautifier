@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::Comment < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::Comment < SCSSBeautifier::Formatters::Base
   def visit_comment(node)
     # require 'pry'; binding.pry
     format_comment(node)# if !node.invisible?

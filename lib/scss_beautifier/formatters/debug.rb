@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::Debug < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::Debug < SCSSBeautifier::Formatters::Base
   def visit_rule(node)
     filtered = node.children.reject do |c|
       Sass::Tree::DebugNode === c

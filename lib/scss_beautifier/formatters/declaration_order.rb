@@ -1,11 +1,7 @@
-class SCSSBeautifier::Formatters::DeclarationOrder < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::DeclarationOrder < SCSSBeautifier::Formatters::Base
   def visit_rule(node)
     order_children(node)
     visit_children(node)
-  end
-
-  def visit_comment(node)
-    require 'pry'; binding.pry
   end
 
   def order_children(node)

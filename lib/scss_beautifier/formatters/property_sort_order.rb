@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::PropertySortOrder < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::PropertySortOrder < SCSSBeautifier::Formatters::Base
   def visit_rule(node)
     order_children(node)
     visit_children(node)

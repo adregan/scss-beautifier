@@ -1,6 +1,6 @@
 PSEUDO_ELEMENTS = File.read(File.realpath(File.join(File.dirname(__FILE__), "..", "..", "..", "data", "pseudo_elements.txt"))).split("\n")
 
-class SCSSBeautifier::Formatters::PseudoElement < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::PseudoElement < SCSSBeautifier::Formatters::Base
   def visit_rule(node)
     check_pseudo(node) if node.rule.join.match(/::?/)
     visit_children(node)

@@ -17,6 +17,9 @@ require "scss_beautifier/config"
 # Our custom SCSS to SCSS converter
 require "scss_beautifier/convert"
 
+# Our base formatter
+require "scss_beautifier/formatters/base"
+
 # Formatters
 require "scss_beautifier/formatters/border_zero"
 require "scss_beautifier/formatters/color"
@@ -33,13 +36,3 @@ require "scss_beautifier/formatters/selector"
 require "scss_beautifier/formatters/shorthand"
 require "scss_beautifier/formatters/string_quotes"
 require "scss_beautifier/formatters/trailing_zero"
-
-class Sass::Tree::Visitors::Base
-  def self.visit(root, options)
-    new(options).send(:visit, root)
-  end
-
-  def initialize(options)
-    @options = options
-  end
-end
