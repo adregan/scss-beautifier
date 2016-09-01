@@ -1,11 +1,13 @@
 class SCSSBeautifier::Formatters::DeclarationOrder < SCSSBeautifier::Formatters::Base
+
+  DEFAULT_SORT_ORDER = ["mixindef", "extend", "mixin", "prop", "rule"].freeze
+
   def visit_rule(node)
     order_children(node)
     visit_children(node)
   end
 
   def order_children(node)
-    # require 'pry'; binding.pry
     node_hash = Hash.new { |h, k| h[k] = [] }
     comment_array = []
     node.children.each do |child|
@@ -32,7 +34,9 @@ class SCSSBeautifier::Formatters::DeclarationOrder < SCSSBeautifier::Formatters:
     node.children = compiled_array
   end
 
+  private
+
   def sort_order
-    @sort_order ||= @options["sort_order"]
+    @sort_order ||= options["sort_order"] || DEFAULT_SORT_ORDER
   end
 end

@@ -13,7 +13,7 @@ module SCSSBeautifier
       config = Config.new(options[:config] || DEFAULT)
 
       config.formatters.each do |formatter|
-        formatter.visit(tree, config.options_for(formatter))
+        formatter.send(:visit, tree)
       end
 
       output = SCSSBeautifier::Convert.visit(tree, {indent: config.tab_style}, :scss)
