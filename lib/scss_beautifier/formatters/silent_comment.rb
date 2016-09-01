@@ -1,4 +1,4 @@
-class SCSSBeautifier::Formatters::SilentComment < Sass::Tree::Visitors::Base
+class SCSSBeautifier::Formatters::SilentComment < SCSSBeautifier::Formatters::Base
   def visit_comment(node)
     format_comment(node) if node.type == :normal
   end
