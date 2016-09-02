@@ -12,14 +12,13 @@
 
   var scssSubmit = submitButton.addEventListener('click', function() {
     var req = new XMLHttpRequest();
-    function scssLoaded(res) {
+    req.addEventListener("load", function(res) {
       if (req.status === 200) {
         outputTextarea.value = req.response;
       } else {
         alert('There was an issue on the server.');
       }
-    }
-    req.addEventListener("load", scssLoaded);
+    });
     req.open("POST", "/beautify");
     req.send(inputTextarea.value);
   });
