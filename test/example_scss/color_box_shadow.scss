@@ -1,0 +1,8 @@
+p {
+  box-shadow: 0 0 5px #000;
+  color: #000;
+
+  .no-boxshadow & {
+    border: solid 1px #000;
+  }
+}
