@@ -25,7 +25,7 @@ class SCSSBeautifier::Formatters::PropertySortOrder < SCSSBeautifier::Formatters
       hash_key = child.class.node_name.to_s
       if hash_key == 'prop'
         children.concat(prop_nodes.shift)
-      elsif hash_key != 'comment' || seen_comments.include?(child)
+      elsif hash_key != 'comment' || !seen_comments.include?(child)
         children << child
       end
     end

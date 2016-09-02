@@ -4,5 +4,6 @@ class SCSSBeautifier::Formatters::Selector < SCSSBeautifier::Formatters::Base
       rule.gsub!(/,/, ",\n") if rule.is_a?(String)
     end
     node.send(:try_to_parse_non_interpolated_rules)
+    visit_children(node)
   end
 end
