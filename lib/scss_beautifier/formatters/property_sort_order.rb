@@ -4,6 +4,8 @@ class SCSSBeautifier::Formatters::PropertySortOrder < SCSSBeautifier::Formatters
     visit_children(node)
   end
 
+  private
+
   def order_children(node)
     prop_nodes = []
     comment_array = []
@@ -12,7 +14,12 @@ class SCSSBeautifier::Formatters::PropertySortOrder < SCSSBeautifier::Formatters
       hash_key = child.class.node_name.to_s
       if hash_key == 'comment'
         seen_comments << child
-        comment_array << child
+        prev_grouping = prop_nodes.last
+        if prop_node_for(prev_grouping).line == child.line
+          prev_grouping << child
+        else
+          comment_array << child
+        end
       elsif hash_key == 'prop'
         prop_nodes << comment_array.push(child)
         comment_array = []
@@ -22,7 +29,7 @@ class SCSSBeautifier::Formatters::PropertySortOrder < SCSSBeautifier::Formatters
     # account for remaining comments
     seen_comments -= comment_array
 
-    prop_nodes.sort! { |x,y| x.last.name[0] <=> y.last.name[0] }
+    prop_nodes.sort! { |x,y| prop_node_for(x).name[0] <=> prop_node_for(y).name[0] }
     # Replace children being respective of other types of props/funcs/etc
     children = []
     node.children.each do |child|
@@ -34,5 +41,10 @@ class SCSSBeautifier::Formatters::PropertySortOrder < SCSSBeautifier::Formatters
       end
     end
     node.children = children
+  end
+
+  # In an Array of nodes, get the prop node
+  def prop_node_for(grouping)
+    grouping.find { |node| node.class.node_name == :prop }
   end
 end

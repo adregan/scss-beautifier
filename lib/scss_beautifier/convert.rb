@@ -32,8 +32,8 @@ class SCSSBeautifier::Convert < Sass::Tree::Visitors::Convert
   # whitespace added.
   def visit_rule_level(nodes)
     Sass::Util.enum_cons(nodes + [nil], 2).map do |child, nxt|
-      visit(child) +
-        if nxt &&
+      child_value = visit(child)
+      spacing = if nxt &&
             (child.is_a?(Sass::Tree::CommentNode) && child.line + child.lines + 1 == nxt.line) ||
             (child.is_a?(Sass::Tree::ImportNode) && nxt.is_a?(Sass::Tree::ImportNode) &&
               child.line + 1 == nxt.line) ||
@@ -52,7 +52,24 @@ class SCSSBeautifier::Convert < Sass::Tree::Visitors::Convert
             "\n"
           end
         end
+      if inline_comment?(child, nxt)
+        child_value.rstrip!
+        spacing = ""
+        nxt.scss_beautifier_options[:inline] = true
+      elsif child.scss_beautifier_options[:inline]
+        spacing = ""
+      end
+      child_value + spacing
     end.join.rstrip + "\n"
+  end
+
+  def visit_comment(node)
+    value = super
+    node.scss_beautifier_options[:inline] ? ' ' + value.lstrip! : value
+  end
+
+  def inline_comment?(node, comment_node)
+    comment_node.is_a?(Sass::Tree::CommentNode) && node.line == comment_node.line
   end
 
 end

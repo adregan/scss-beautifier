@@ -34,3 +34,12 @@ require "scss_beautifier/formatters/selector"
 require "scss_beautifier/formatters/shorthand"
 require "scss_beautifier/formatters/string_quotes"
 require "scss_beautifier/formatters/trailing_zero"
+
+class Sass::Tree::Node
+  attr_accessor :scss_beautifier_options
+
+  def scss_beautifier_options
+    @scss_beautifier_options ||= {}
+  end
+
+end
