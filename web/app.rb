@@ -3,17 +3,26 @@ require "scss_beautifier"
 
 class ScssBeautifierApp < Sinatra::Base
 
+  get "/" do
+    redirect '/index.html'
+  end
+
   post "/beautify" do
-   engine = Sass::Engine.new(request.body.read.to_s, cache: false, syntax: :scss)
+    engine = Sass::Engine.new(request.body.read.to_s, cache: false, syntax: :scss)
 
-   tree = engine.to_tree
-   config = SCSSBeautifier::Config.new(SCSSBeautifier::CLI::DEFAULT)
+    begin
+      tree = engine.to_tree
+    rescue Sass::SyntaxError => e
+      return e.message
+    end
 
-   config.formatters.each do |formatter|
-     formatter.send(:visit, tree)
-   end
+    config = SCSSBeautifier::Config.new(SCSSBeautifier::CLI::DEFAULT)
 
-   output = SCSSBeautifier::Convert.visit(tree, {indent: config.tab_style}, :scss)
+    config.formatters.each do |formatter|
+      formatter.send(:visit, tree)
+    end
+
+    output = SCSSBeautifier::Convert.visit(tree, {indent: config.tab_style}, :scss)
 
   end
 
