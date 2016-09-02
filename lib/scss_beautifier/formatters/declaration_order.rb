@@ -23,6 +23,9 @@ class SCSSBeautifier::Formatters::DeclarationOrder < SCSSBeautifier::Formatters:
       end
     end
 
+    # add remaining comments
+    node_hash['comment'] = comment_array if comment_array.any?
+
     compiled_array = sort_order.reduce([]) do |memo, key|
       memo.concat(node_hash[key])
     end

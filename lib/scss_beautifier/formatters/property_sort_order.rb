@@ -18,6 +18,10 @@ class SCSSBeautifier::Formatters::PropertySortOrder < SCSSBeautifier::Formatters
         comment_array = []
       end
     end
+
+    # account for remaining comments
+    seen_comments -= comment_array
+
     prop_nodes.sort! { |x,y| x.last.name[0] <=> y.last.name[0] }
     # Replace children being respective of other types of props/funcs/etc
     children = []
