@@ -5,6 +5,7 @@ module SCSSBeautifier
     # Returns exit code
     def run(args)
       options = Options.new.parse(args)
+      generate_configuration and return if options[:generate_config]
 
       contents = File.read(args.first)
       engine = Sass::Engine.new(contents, cache: false, syntax: :scss)
@@ -22,6 +23,12 @@ module SCSSBeautifier
       else
         puts output
       end
+    end
+
+    private
+
+    def generate_configuration
+      File.write(".scss-beautifier", File.read(DEFAULT))
     end
 
   end
